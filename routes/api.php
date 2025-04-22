@@ -28,5 +28,5 @@ Route::prefix('brands')->group(function(){
     // delete a brand
     Route::delete('/{id}', [BrandController::class, 'deleteBrand']);
     // route to assign a country to a brand
-    Route::post('/{brandId}/assign-country', [BrandController::class, 'assignCountry']);
+    Route::post('/{id}/assign-country', [BrandController::class, 'assignCountry']);
 });

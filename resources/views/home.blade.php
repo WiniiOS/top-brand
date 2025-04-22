@@ -20,7 +20,7 @@
   </header>
 
   <section id="brandsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
-    <!-- Cartes dynamiques injectées ici -->
+    <!-- cartes dynamiques -->
   </section>
 
 </body>
@@ -31,7 +31,7 @@
         try {
         const response = await fetch('http://localhost:8000/api/brands', {
             headers: {
-            'CF-IPCountry': 'CM', // Tu peux changer ça dynamiquement si besoin
+            'CF-IPCountry': 'CM',
             'Accept': 'application/json'
             }
         });

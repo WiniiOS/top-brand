@@ -74,13 +74,15 @@ class BrandController extends Controller
     {
         try {
 
+            $validated = $request->validate([
+                'brand_name' => 'sometimes|string|max:255',
+                'brand_image' => 'sometimes|string|url',
+                'rating' => 'sometimes|integer|min:0|max:5',
+            ]);
+
             $brand = Brand::findOrFail($id);
 
-            $brand->update($request->validate([
-                'brand_name' => 'string|max:255',
-                'brand_image' => 'string|url',
-                'rating' => 'integer|min:0|max:5',
-            ]));
+            $brand->update($validated);
 
             return response()->json([
                 'code' => 'success',
@@ -115,19 +117,19 @@ class BrandController extends Controller
     /**
      * Assign a country to a brand.
      */
-    public function assignCountry(Request $request, $brandId)
-    {
-        $request->validate([
+    public function assignCountry(Request $request, $id)
+{
+        $validated = $request->validate([
             'countries' => 'required|array',
             'countries.*' => 'exists:countries,code'
         ]);
 
         try {
+            $brand = Brand::findOrFail($id);
 
-            $brand = Brand::findOrFail($brandId);
-            $countriesIds = Country::whereIn('code', $request->countries)->pluck('id');
-
-            $brand->countries()->sync($countriesIds);
+            $brand->countries()->sync(
+                Country::whereIn('code', $validated['countries'])->pluck('id')
+            );
 
             return response()->json([
                 'code' => 'success',
@@ -136,8 +138,12 @@ class BrandController extends Controller
             ]);
 
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'Brand not found'], 404);
+            return response()->json([
+                'message' => 'Error occurred',
+                'error' => $th->getMessage(),
+            ], 500);
         }
     }
+
 
 }
