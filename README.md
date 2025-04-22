@@ -14,5 +14,5 @@ Ce projet est une application Laravel déployée avec Docker, utilisant Apache c
 Commencez par cloner ce repository et accédez à son répertoire :
 
 ```bash
-git clone https://github.com/ton-utilisateur/ton-repo.git
+git clone https://github.com/WiniiOS/top-brand
 cd ton-repo
