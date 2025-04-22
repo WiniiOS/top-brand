@@ -73,6 +73,7 @@ class BrandController extends Controller
     public function editBrand(Request $request,$id)
     {
         try {
+
             $brand = Brand::findOrFail($id);
 
             $brand->update($request->validate([
