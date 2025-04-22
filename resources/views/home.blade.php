@@ -49,15 +49,14 @@
             card.className = "bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-105 cursor-pointer";
 
             card.innerHTML = `
-            <img src="${brand.image}" alt="${brand.name}" class="w-full h-48 object-cover">
+            <img src="${brand.brand_image}" alt="${brand.brand_name}" class="w-full h-48 object-cover">
             <div class="p-4">
-                <h2 class="text-xl font-semibold text-gray-800">${brand.name}</h2>
-                <p class="text-gray-500 mt-1">${brand.description}</p>
+                <h2 class="text-xl font-semibold text-gray-800">${brand.brand_name}</h2>
             </div>
             `;
 
             card.addEventListener('click', () => {
-            alert(`Vous avez cliqué sur ${brand.name}`);
+            alert(`Vous avez cliqué sur ${brand.brand_name}`);
             });
 
             container.appendChild(card);
